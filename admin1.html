@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TKABiH</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="prikaziDogađaje()">
+
+<div class="container1Naslov">
+    <div class="Naslovna">
+        <div class="naslov">
+            <h1>INFORMACIONI SISTEM TRADICIONALNE KARATE-DO ASOCIJACIJE BOSNE I HERCEGOVINE</h1>
+        </div>
+        <div class="slicicaNaslov">
+            <img src="logo200.png">
+        </div>
+    </div>
+    <p class="adminDashboard">ADMIN DASHBOARD</p>
+</div>
+
+
+<div class="kalendarContainer">
+    <p class="kalendar"><b>KALENDAR</b></p>
+
+    <div id="dogadjajiContainer"></div>
+
+    <button class="uredi" onclick="window.location.href='adminKalendarIzmjene.html'"><b>UREDI</b></button>
+
+</div>
+
+<div class="dugmadAdmin">
+    <div class="dugmicKlubovi">
+        <button class="kluboviAdmin">KLUBOVI</button>
+    </div>
+    <div class="dugmicTakmicari">
+        <button class="takmicariAdmin">TAKMIČARI</button>
+    </div>
+    
+</div>
+
+<script>
+    function prikaziDogađaje() {
+        fetch('http://localhost:3000/dohvati-dogadjaje')
+        .then(response => response.json())
+        .then(dogadjaji => {
+            const dogadjajiContainer = document.getElementById('dogadjajiContainer');
+            dogadjajiContainer.innerHTML = '';
+    
+            dogadjaji.forEach(dogadjaj => {
+                const dogadjajElement = document.createElement('div');
+                dogadjajElement.classList.add('dogadjaj'); // Dodajte klasu za stilizaciju
+    
+                dogadjajElement.textContent = `${dogadjaj.nazivDogadjaja} - ${dogadjaj.mjesto} - ${dogadjaj.datum}`;
+                dogadjajiContainer.appendChild(dogadjajElement);
+            });
+        })
+        .catch(error => {
+            console.error('Greška prilikom dohvaćanja događaja:', error);
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', prikaziDogađaje);
+</script>
+
+
+</body>
+</html>

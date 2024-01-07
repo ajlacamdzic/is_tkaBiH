@@ -1,0 +1,284 @@
+body {
+    margin: 0;
+    background: #d7e1f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container1Naslov {
+    flex: 1;
+}
+
+.Naslovna {
+    width: 100%;
+    height: 100%;
+    background-color: #6995D8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.naslov {
+    width: 60%;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 900;
+    word-wrap: break-word;
+    margin-top: 20px;
+    margin-left: 190px;
+}
+
+.slicicaNaslov {
+    max-width: 80px;
+    margin-right: 280px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 55vh;
+    margin-top: 50px; /* Adjusted margin-top */
+}
+
+.buttonsAdmin,
+.buttonsKlub {
+    width: 220px;
+    height: 60px;
+    margin: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.admin,
+.klub {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 900;
+    background-color: #ABC4EA;
+}
+
+.futercic {
+    width: 80%;
+    height: 125px;
+    background: #6995D8;
+    border: 0.50px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.futerTekst {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 768px) {
+    .naslov {
+        width: 90%;
+    }
+
+    .slicicaNaslov{
+        max-width: 40px;
+        margin-right: 10px;
+    }
+
+    .buttons {
+        height: 30vh;
+    }
+
+    .buttonsAdmin,
+    .buttonsKlub {
+        width: 150px;
+        height: 40px;
+        margin: 8px;
+    }
+
+    .futercic {
+        width: 90%;
+    }
+}
+
+/*admin*/
+
+.adminDashboard{
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 600;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+.kalendarContainer {
+    width: 650px;
+    height: 700px;
+    left: 500px;
+    top: 350px;
+    position: absolute;
+    background: #ABC4EA;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.kalendar {
+    text-align: center;
+    font-family: Inter;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.dodajDugme {
+    position: fixed;
+    top: 450px;
+    right: 1450px;
+    width: 30px;
+    height: 30px;
+    background-color: #ABC4EA;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uredi {
+    align-self: flex-end; 
+    background-color: #5B88CB;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 25px;
+    margin-top: 20px;
+}
+
+.dugmadAdmin{
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.dugmicKlubovi {
+    width: 320px;
+    height: 64px;
+    left: 55%;
+    top: 527px;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.kluboviAdmin{
+    width: 100%;
+    height: 100%;
+    color: black;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 900;
+    word-wrap: break-word;
+    border-radius: 10px;
+    background-color: #ABC4EA;
+}
+
+.dugmicTakmicari {
+    width: 320px;
+    height: 64px;
+    left: 55%;
+    top: 690px;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.takmicariAdmin{
+    width: 100%;
+    height: 100%;
+    color: black;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 900;
+    word-wrap: break-word;
+    border-radius: 10px;
+    background-color: #ABC4EA;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 10000;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1;
+}
+
+/* Dodajte ove stilove za poboljšanje izgleda prikaza događaja */
+#dogadjajiContainer {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+}
+
+.dogadjaj {
+    margin-bottom: 15px; /* Dodajte razmak između pojedinih događaja */
+}

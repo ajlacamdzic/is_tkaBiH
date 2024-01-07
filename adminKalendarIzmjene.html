@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TKABiH</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body onload="prikaziDogađaje()">
+
+<div class="container1Naslov">
+    <div class="Naslovna">
+        <div class="naslov">
+            <h1>INFORMACIONI SISTEM TRADICIONALNE KARATE-DO ASOCIJACIJE BOSNE I HERCEGOVINE</h1>
+        </div>
+        <div class="slicicaNaslov">
+            <img src="logo200.png">
+        </div>
+    </div>
+    <p class="adminDashboard">ADMIN DASHBOARD</p>
+</div>
+
+
+<div class="kalendarContainer">
+    <p class="kalendar"><b>KALENDAR</b></p>
+    <button class="dodajDugme" onclick="openPopup()">DODAJ</button>
+
+    <div id="dogadjajiContainer"></div>
+
+    <button class="uredi" onclick="window.location.href='admin1.html'"><b>SAČUVAJ IZMJENE</b></button>
+
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <form id="eventForm">
+            <label for="nazivDogadjaja">Naziv događaja:</label>
+            <input type="text" id="nazivDogadjaja" name="nazivDogadjaja">
+
+            <label for="mjesto">Mjesto:</label>
+            <input type="text" id="mjesto" name="mjesto">
+
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" name="datum">
+
+            <label for="vrijeme">Vrijeme:</label>
+            <input type="time" id="vrijeme" name="vrijeme">
+
+            <button type="button" onclick="saveEvent()">Spremi</button>
+        </form>
+    </div>
+</div>
+
+<div class="dugmadAdmin">
+    <div class="dugmicKlubovi">
+        <button class="kluboviAdmin">KLUBOVI</button>
+    </div>
+    <div class="dugmicTakmicari">
+        <button class="takmicariAdmin">TAKMIČARI</button>
+    </div>
+    
+</div>
+
+<script>
+    function openPopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';
+    }
+  
+    function closePopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
+
+    function saveEvent() {
+        const nazivDogadjaja = document.getElementById('nazivDogadjaja').value;
+        const mjesto = document.getElementById('mjesto').value;
+        const datum = document.getElementById('datum').value;
+    
+        const data = {
+            nazivDogadjaja,
+            mjesto,
+            datum
+        };
+    
+        fetch('http://localhost:3000/dodaj-dogadjaj', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            console.log('Odgovor od servera:', responseData);
+            closePopup();
+    
+            // Dodaj ažuriranje prikaza događaja nakon što se podaci spreme
+            prikaziDogađaje();
+        })
+        .catch(error => {
+            console.error('Greška prilikom slanja podataka serveru:', error);
+        });
+    }
+         
+    
+    // Nova funkcija za dohvaćanje i prikaz događaja
+    function prikaziDogađaje() {
+        fetch('http://localhost:3000/dohvati-dogadjaje')
+        .then(response => response.json())
+        .then(dogadjaji => {
+            const dogadjajiContainer = document.getElementById('dogadjajiContainer');
+            dogadjajiContainer.innerHTML = '';
+    
+            dogadjaji.forEach(dogadjaj => {
+                const dogadjajElement = document.createElement('div');
+                dogadjajElement.classList.add('dogadjaj'); // Dodajte klasu za stilizaciju
+    
+                dogadjajElement.textContent = `${dogadjaj.nazivDogadjaja} - ${dogadjaj.mjesto} - ${dogadjaj.datum}`;
+                dogadjajiContainer.appendChild(dogadjajElement);
+            });
+        })
+        .catch(error => {
+            console.error('Greška prilikom dohvaćanja događaja:', error);
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', prikaziDogađaje);
+    
+    
+  </script>
+
+
+</body>
+</html>
