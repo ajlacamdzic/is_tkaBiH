@@ -45,7 +45,7 @@ body {
     align-items: center;
     flex-direction: column;
     height: 55vh;
-    margin-top: 50px; /* Adjusted margin-top */
+    margin-top: 50px; 
 }
 
 .buttonsAdmin,
@@ -269,7 +269,6 @@ body {
     z-index: 1;
 }
 
-/* Dodajte ove stilove za poboljšanje izgleda prikaza događaja */
 #dogadjajiContainer {
     font-size: 18px;
     line-height: 1.5;
@@ -280,5 +279,5 @@ body {
 }
 
 .dogadjaj {
-    margin-bottom: 15px; /* Dodajte razmak između pojedinih događaja */
+    margin-bottom: 15px; 
 }

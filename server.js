@@ -10,9 +10,9 @@ app.use(cors());
 // Konfiguracija MySQL baze podataka
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root', // Vaše korisničko ime
-  password: 'ajla', // Vaša lozinka
-  database: 'ris' // Naziv vaše baze podataka
+  user: 'root', 
+  password: 'ajla', 
+  database: 'ris' 
 });
 
 db.connect((err) => {
